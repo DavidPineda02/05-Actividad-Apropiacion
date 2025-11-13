@@ -1,17 +1,16 @@
-// Funcion que calcula el subtotal: cantidad × precio
-export function CalcularSubtotal(cantidad , precio)
-{
+export { calcularSubtotal, calcularIVA, calcularTotal };
+
+// Función para calcular el subtotal
+function calcularSubtotal(cantidad, precio) {
     return cantidad * precio;
 }
 
-// Funcion que calcula el IVA (19%) sobre el subtotal
-export function CalcularIva(Subtotal)
-{
-    return Subtotal * 0.19;
+// Funcion para calcular el IVA (19%)
+function calcularIVA(subtotal) {
+    return subtotal * 0.19;
 }
 
-// Funcion que calcula el total a pagar: subtotal + IVA
-export function CalcularTotal(Subtotal,iva)
-{
-    return Subtotal + iva;
+// Funcion para calcular el total a pagar
+function calcularTotal(subtotal, iva) {
+    return subtotal + iva;
 }

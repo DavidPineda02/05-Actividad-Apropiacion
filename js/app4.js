@@ -8,29 +8,29 @@
 
 
 // Importamos las funciones CalcularSubtotal, CalcularIva y CalcularTotal desde el archivo valortotal.js ubicado en la carpeta modulos
-import { CalcularSubtotal, CalcularIva, CalcularTotal } from "../modules/valortotal.js";
+import { calcularSubtotal, calcularIVA, calcularTotal } from '../modules/valortotal.js';
 
 export const valorTotal = function() {
-    // Pedimos al usuario que ingrese la cantidad de productos y convertimos el valor a entero
-    let cantidad = parseInt(prompt("Ingrese la cantidad de productos: "));
+    // Pedir datos por teclado
+    let cantidad = parseFloat(prompt("Ingresa la cantidad de productos: "));
+    let precio = parseFloat(prompt("Ingresa el precio unitario: "));
 
-    // Pedimos al usuario que ingrese el precio del producto y convertimos el valor a decimal
-    let precio = parseFloat(prompt("Ingrese el precio del producto: "));
+    // Validar que los datos sean numeros
+    if (isNaN(cantidad) || isNaN(precio)) {
+        alert("Por favor, ingresa valores numéricos válidos.");
+    } else {
+        // Calcular subtotal
+        let subtotal = calcularSubtotal(cantidad, precio);
 
-    // Calculamos el subtotal multiplicando cantidad por precio
-    let Subtotal = CalcularSubtotal(cantidad, precio);
+        // Calcular IVA
+        let iva = calcularIVA(subtotal);
 
-    // Calculamos el IVA (19%) sobre el subtotal
-    let iva = CalcularIva(Subtotal);
-
-    // Calculamos el total sumando el subtotal y el IVA
-    let total = CalcularTotal(Subtotal, iva);
-
-    // Mostramos los resultados finales al usuario usando alert
-    alert(`subtotal: ${Subtotal} iva(19%): ${iva} total a pagar: ${total}`);
-
-    // Llamadas adicionales a las funciones (no tienen efecto visible porque no se usan los retornos)
-    CalcularSubtotal(cantidad, precio);
-    CalcularIva(Subtotal);
-    CalcularTotal(Subtotal, iva);
+        // Calcular total
+        let total = calcularTotal(subtotal, iva);
+        
+        // Mostrar en alertas también si quieres
+        alert("Subtotal: $" + subtotal);
+        alert("IVA (19%): $" + iva);
+        alert("Total a pagar: $" + total);
+    }
 }
